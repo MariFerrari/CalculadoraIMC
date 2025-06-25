@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        /* Um pouco de CSS básico para começar a dar uma "cara" */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #e7b5db;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #000000;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+            .button-link { /
+        display: inline-block;
+        background-color: #6c757d; 
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 1em;
+        cursor: pointer;
+    }
+    .button-link:hover {
+        background-color: #5a6268;
+        .resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de IMC</h1>
+        <form action="/calcular" method="post">
+            <label for="peso">Peso (kg):</label>
+            <input type="number" id="peso" name="peso" step="0.01" required>
+
+            <label for="altura">Altura (m):</label>
+            <input type="number" id="altura" name="altura" step="0.01" required>
+
+            <button type="submit">Calcular IMC</button>
+        </form>
+
+        {% if imc %}
+            <div class="resultado">
+                <p>Seu IMC é: {{ imc | round(2) }}</p>
+                <p>Classificação: {{ classificacao }}</p>
+            </div>
+            <p>
+                <a href="/" class="button-link">Novo Cálculo</a>
+            </p>
+        {% endif %}
+    </div>
+</body>
+</html>
